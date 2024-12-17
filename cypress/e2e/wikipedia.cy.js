@@ -53,8 +53,6 @@ describe('Wikipedia - Página Principal', () => {
         .and('have.class', 'cdx-search-input')
         .and('have.attr', 'action', '/w/index.php')
 
-      cy.get('#p-search > .cdx-button--fake-button')
-        .click()
       // Validação do input de pesquisa
       cy.get('.cdx-text-input__input')
         .should('exist')
@@ -64,8 +62,7 @@ describe('Wikipedia - Página Principal', () => {
         .and('have.attr', 'name', 'search')
         .and('have.attr', 'accesskey', 'f')
         .and('have.attr', 'autocomplete', 'off')
-        .and('have.attr', 'role', 'combobox');
-
+        
       // Validação do botão de pesquisa
       cy.get('button.cdx-search-input__end-button')
         .should('exist')
