@@ -1,0 +1,25 @@
+name: Cypress e2e Tests
+
+on:
+  workflow_dispatch: # Define que o workflow será executado manualmente
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code # Faz o checkout do código do seu repositório
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js # Configura o node para a versão especificada
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+
+      - name: Install Dependencies # Instala as dependecias do projeto
+        run: |
+          npm install
+
+      - name: Run Cypress e2e Tests # Executa os testes e2e do Cypress
+        run: |
+          npm run cy:run
