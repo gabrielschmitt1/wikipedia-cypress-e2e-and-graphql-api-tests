@@ -126,7 +126,8 @@ describe('Wikipedia - Página Principal', () => {
       // Verificar dropdown expandido
       cy.get('#vector-user-links-dropdown-checkbox')
         .click()
-        .should('have.attr', 'aria-expanded', 'true', {timeout: 10000}) // Verifica se o atributo "aria-expanded" está presente
+      cy.get('#vector-user-links-dropdown-checkbox')
+        .should('have.attr', 'aria-expanded', 'true') // Verifica se o atributo "aria-expanded" está presente
       
       // Validação do link Contribuições
       cy.get('#p-user-menu-anon-editor ul li a')
