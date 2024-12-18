@@ -160,7 +160,7 @@ describe('Wikipedia - Página Principal', () => {
         .should('be.visible')
     });
 
-    it.only('CT005 - Validar opção de manter menu fixo na barra lateral', () => {
+    it('CT005 - Validar opção de manter menu fixo na barra lateral', () => {
       // Selecionando o botão usando o atributo de teste data-event-name
       cy.get('[data-event-name="pinnable-header.vector-main-menu.pin"]')
         .should('contain.text', 'mover para a barra lateral')
