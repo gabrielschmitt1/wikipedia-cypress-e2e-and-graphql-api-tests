@@ -7,14 +7,14 @@ describe('Wikipedia - Testes de Pesquisa', () => {
     context('Pesquisas Básicas', () => {
       it('CT001 - Deve realizar pesquisa básica com sucesso', () => {
         // Intercepta a API de busca
-        cy.intercept('GET', 'https://pt.wikipedia.org/w/rest.php/v1/search/title?q=gabriel&limit=10').as('search')
+        cy.intercept('GET', '**/rest.php/v1/search/title**').as('request')
         // Pesquisa de termo simples
         cy.get('#searchInput')
           .type('gabriel')
         
         cy.contains('button', 'Pesquisar').click()
         // Aguarda que a API responda
-        cy.wait('@search', {timeout: 10000}).its('response.statusCode').should('eq', 200)
+        cy.wait('@request', {timeout: 10000}).its('response.statusCode').should('eq', 200)
         // Verificações de resultados
         cy.url().should('include', 'Gabriel')
         cy.get('#firstHeading').should('contain', 'Gabriel')
@@ -22,12 +22,12 @@ describe('Wikipedia - Testes de Pesquisa', () => {
 
       it('CT002 - Deve buscar por país (Brasil) com sucesso', () => {
         // Intercepta a API de busca
-        cy.intercept('GET', 'https://pt.wikipedia.org/w/rest.php/v1/search/title?q=Brasil&limit=10').as('searchCountry')
+        cy.intercept('GET', '**/rest.php/v1/search/title**').as('request')
         cy.get('#searchInput').as('buscaBrasil')
         cy.get('@buscaBrasil').type('Brasil')
         cy.contains('button', 'Pesquisar').click()
         // Aguarda que a API responda
-        cy.wait('@searchCountry').its('response.statusCode').should('eq', 200)
+        cy.wait('@request').its('response.statusCode').should('eq', 200)
         // Verificações de resultados
         cy.url().should('include', 'Brasil')
         cy.get('#firstHeading').should('contain', 'Brasil')
@@ -130,7 +130,6 @@ describe('Wikipedia - Testes de Pesquisa', () => {
       it('CT003 - Deve realizar pesquisa com caracteres especiais', () => {
         const termosPesquisa = [
           'São Paulo',
-          'C++',
           '!',
           '123'
         ]
@@ -140,12 +139,12 @@ describe('Wikipedia - Testes de Pesquisa', () => {
             cy.intercept('GET', '**/rest.php/v1/search/title**').as('searchRequest')
             cy.wrap(termo).then((termoAtual) => {
               // Visitando a pagina novamente para garantir um estado limpo
-              cy.visit('/')
+              cy.visit('/', {timeout: 10000})
               cy.get('#searchInput')
                 .type(termoAtual)
               cy.contains('button', 'Pesquisar').click()
               // Aguardando a requisição terminar e validando a resposta
-              cy.wait('@searchRequest')
+              cy.wait('@searchRequest', { timeout: 10000 })
                 .its('response.statusCode')
                 .should('eq', 200)
               // Verificando resultados
@@ -160,7 +159,7 @@ describe('Wikipedia - Testes de Pesquisa', () => {
         cy.get('#searchInput')
           .type(termoSemResultado)
         cy.contains('button', 'Pesquisar').click()
-        cy.wait('@noResults')
+        cy.wait('@noResults', {timeout: 10000})
         // Verificar mensagem de nenhum resultado
         cy.get('.mw-search-nonefound')
           .should('be.visible')

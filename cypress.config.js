@@ -9,8 +9,6 @@ module.exports = defineConfig({
     viewportWidth: 1280,
     viewportHeight: 800,
     defaultCommandTimeout: 10000,
-    pageLoadTimeout: 10000,
-    responseTimeout: 10000,
     baseUrl: "https://pt.wikipedia.org",
     setupNodeEvents(on, config) {
       // implement node event listeners here
