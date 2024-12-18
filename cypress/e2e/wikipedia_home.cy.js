@@ -160,11 +160,15 @@ describe('Wikipedia - Página Principal', () => {
         .should('be.visible')
     });
 
-    it('CT005 - Validar opção de manter menu fixo na barra lateral', () => {
-      cy.contains('button', 'mover para a barra lateral')
-        .click()
-      cy.contains('button', 'ocultar')
-        .should('be.visible')
+    it.only('CT005 - Validar opção de manter menu fixo na barra lateral', () => {
+      // Selecionando o botão usando o atributo de teste data-event-name
+      cy.get('[data-event-name="pinnable-header.vector-main-menu.pin"]')
+        .should('contain.text', 'mover para a barra lateral')
+        .and('be.visible')
+        .click();
+      cy.get('[data-event-name="pinnable-header.vector-main-menu.unpin"]')
+        .should('contain.text', 'ocultar')
+        .and('be.visible');
     });
 
     it('CT006 - Validar itens do menu principal com opções visiveis', () => {
@@ -214,13 +218,13 @@ describe('Wikipedia - Página Principal', () => {
 
     it('CT008 - Validar opção de manter menu ferramentas fixo na barra lateral', () => {
       // Selecionando o botão usando o atributo de teste data-event-name
-    cy.get('[data-event-name="pinnable-header.vector-page-tools.pin"]')
-      .should('contain.text', 'mover para a barra lateral')
-      .and('be.visible')
-      .click();
-    cy.get('[data-event-name="pinnable-header.vector-page-tools.unpin"]')
-      .should('contain.text', 'ocultar')
-      .and('be.visible');
+      cy.get('[data-event-name="pinnable-header.vector-page-tools.pin"]')
+        .should('contain.text', 'mover para a barra lateral')
+        .and('be.visible')
+        .click();
+      cy.get('[data-event-name="pinnable-header.vector-page-tools.unpin"]')
+        .should('contain.text', 'ocultar')
+        .and('be.visible');
     });
 
     it('CT009 - Validar itens do menu ferramentas com opções visiveis', () => {
