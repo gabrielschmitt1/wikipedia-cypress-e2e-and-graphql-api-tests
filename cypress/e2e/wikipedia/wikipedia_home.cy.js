@@ -18,7 +18,7 @@ describe('Wikipedia - Página Principal', () => {
             .and('have.attr', 'height', '50')
             .and('have.attr', 'width', '50')
             .and('have.attr', 'alt', '');
-  
+
           // Validação do container da logo
           cy.get('.mw-logo-container')
             .should('exist')
@@ -30,7 +30,7 @@ describe('Wikipedia - Página Principal', () => {
                 .and('be.visible')
                 .and('have.attr', 'alt', 'Wikipédia')
                 .and('have.attr', 'src', '/static/images/mobile/copyright/wikipedia-wordmark-fr.svg');
-  
+
               // Validação da tagline
               cy.get('.mw-logo-tagline')
                 .should('exist')
@@ -40,7 +40,7 @@ describe('Wikipedia - Página Principal', () => {
                 .and('have.attr', 'height', '13');
             });
         });
-  
+
       // Teste de navegação ao clicar na logo
       cy.get('a.mw-logo').click();
       cy.url().should('include', '/wiki/Wikip%C3%A9dia:P%C3%A1gina_principal');
@@ -62,13 +62,13 @@ describe('Wikipedia - Página Principal', () => {
         .and('have.attr', 'name', 'search')
         .and('have.attr', 'accesskey', 'f')
         .and('have.attr', 'autocomplete', 'off')
-        
+
       // Validação do botão de pesquisa
       cy.get('button.cdx-search-input__end-button')
         .should('exist')
         .and('be.visible')
         .and('have.text', 'Pesquisar');
-      
+
       // Validação dos campos hidden
       cy.get('input[type="hidden"][name="title"]')
         .should('exist')
@@ -88,7 +88,7 @@ describe('Wikipedia - Página Principal', () => {
             .invoke('attr', 'href')
             .then((href) => {
               // Criação de regex para verificar se o link começa com a URL do site de donativos
-              const regex = /^https:\/\/donate\.wikimedia\.org/; 
+              const regex = /^https:\/\/donate\.wikimedia\.org/;
               expect(href).to.match(regex);
             });
           // Validação do link de Criar Conta
@@ -98,8 +98,8 @@ describe('Wikipedia - Página Principal', () => {
           cy.get('li#pt-createaccount-2 a')
             .invoke('attr', 'href')
             .then((href) => {
-                const expectedLink = "/w/index.php?title=Especial:Criar_conta&returnto=Wikip%C3%A9dia%3AP%C3%A1gina+principal";
-                expect(href).to.equal(expectedLink);
+              const expectedLink = "/w/index.php?title=Especial:Criar_conta&returnto=Wikip%C3%A9dia%3AP%C3%A1gina+principal";
+              expect(href).to.equal(expectedLink);
             });
 
           // Validação do link de Entrar na conta
@@ -109,14 +109,14 @@ describe('Wikipedia - Página Principal', () => {
           cy.get('li#pt-login-2 a')
             .invoke('attr', 'href')
             .then((href) => {
-                const expectedLink = "/w/index.php?title=Especial:Entrar&returnto=Wikip%C3%A9dia%3AP%C3%A1gina+principal";
-                expect(href).to.equal(expectedLink);
+              const expectedLink = "/w/index.php?title=Especial:Entrar&returnto=Wikip%C3%A9dia%3AP%C3%A1gina+principal";
+              expect(href).to.equal(expectedLink);
             });
         });
       // Validação do input com links para Contribuições e Discussão
       cy.get('#vector-user-links-dropdown')
         .should('have.attr', 'title', 'Mais opções')
-        .within(() => { 
+        .within(() => {
           cy.get('#vector-user-links-dropdown-checkbox')
             .should('have.attr', 'type', 'checkbox') // Verifica se o tipo do input é "checkbox"
             .should('have.attr', 'role', 'button') // Verifica se o atributo "role" é "button"
@@ -128,12 +128,12 @@ describe('Wikipedia - Página Principal', () => {
         .click()
       cy.get('#p-user-menu-anon-editor')
         .should('be.visible') // Verifica se dropdown está visivel
-      
+
       // Validação do link Contribuições
       cy.get('#p-user-menu-anon-editor ul li a')
         .first()
         .should('have.text', 'Contribuições')
-        .and('have.attr', 'href', '/wiki/Especial:Minhas_contribui%C3%A7%C3%B5es');  
+        .and('have.attr', 'href', '/wiki/Especial:Minhas_contribui%C3%A7%C3%B5es');
       // Validação do link Discussão
       cy.get('#p-user-menu-anon-editor ul li a')
         .last()
@@ -144,17 +144,17 @@ describe('Wikipedia - Página Principal', () => {
       cy.get('.vector-menu-heading')
         .should('contain', 'Páginas para editores sem sessão iniciada')
         .find('a')
-          .should('have.attr', 'href', '/wiki/Ajuda:Introduction')
+        .should('have.attr', 'href', '/wiki/Ajuda:Introduction')
     });
   });
 
   context('Validação do menu principal de navegação lateral', () => {
-    
+
     beforeEach(() => {
       cy.get('#vector-main-menu-dropdown-checkbox')
         .click()
     });
-    
+
     it('CT004 - Verificar se o menu principal está visível ao carregar a página inicial', () => {
       cy.get('#vector-main-menu')
         .should('be.visible')
@@ -205,12 +205,12 @@ describe('Wikipedia - Página Principal', () => {
   });
 
   context('Validação do menu ferramentas', () => {
-    
+
     beforeEach(() => {
       cy.get('#vector-page-tools-dropdown-checkbox')
         .click()
     });
-    
+
     it('CT007 - Verificar se o menu ferramentas está visível ao carregar a página inicial', () => {
       cy.get('#vector-page-tools')
         .should('be.visible')
@@ -271,7 +271,7 @@ describe('Wikipedia - Página Principal', () => {
       });
     });
 
-    
+
   });
 
   context('Validação dos textos de apresentação na pagina principal', () => {
@@ -300,12 +300,12 @@ describe('Wikipedia - Página Principal', () => {
             .should('exist')
             .and('have.attr', 'title', 'Ajuda:Tutorial/Edição');
         })
-      
+
       cy.get('a[href="/wiki/Wikip%C3%A9dia"]')
         .should('exist')
         .and('contain.text', 'Wikipédia')
         .and('have.attr', 'title', 'Wikipédia')
-        
+
     });
 
     it('CT011 - Validação dos links da seção de boas vindas', () => {
@@ -316,7 +316,7 @@ describe('Wikipedia - Página Principal', () => {
         { href: '/wiki/Wikip%C3%A9dia:Pol%C3%ADticas_e_recomenda%C3%A7%C3%B5es', text: 'Políticas' },
         { href: '/wiki/Portal:%C3%8Dndice', text: 'Portais' },
       ];
-  
+
       links.forEach(link => {
         cy.get(`a[href="${link.href}"]`)
           .should('contain.text', link.text);
@@ -337,7 +337,7 @@ describe('Wikipedia - Página Principal', () => {
         { href: '/wiki/Portal:Sociedade', text: 'Sociedade' },
         { href: '/wiki/Portal:Tecnologia', text: 'Tecnologia' },
       ];
-      
+
       // Seleciona a tabela
       cy.get('table.hp-portalen').should('be.visible').within(() => {
         // Para cada link dentro da tabela, verifica se o link está no elemento correto
@@ -350,7 +350,7 @@ describe('Wikipedia - Página Principal', () => {
             .closest('table.hp-portalen') // Verifica se o <tr> está dentro da tabela
             .should('exist'); // Confirma que o link está dentro da tabela
         });
-      });      
+      });
     });
   });
 
@@ -358,7 +358,7 @@ describe('Wikipedia - Página Principal', () => {
     it('CT013 - Validação da Seção Artigo em Destaque e Eventos Atuais', () => {
       cy.get('.main-page-responsive-columns.main-page-first-row').should('exist').within(() => {
         cy.contains('Artigo em destaque'); // Verifica a presença do título
-        cy.contains('Eventos atuais'); 
+        cy.contains('Eventos atuais');
         cy.get('img.mw-file-element')
           .should('be.visible'); // Verifica se a imagem é visível
         cy.get('a[href]')
@@ -368,10 +368,10 @@ describe('Wikipedia - Página Principal', () => {
         cy.get('.main-page-block-contents ul li')
           .should('have.length.greaterThan', 0); // Verifica se há pelo menos um evento listado
         cy.get('.main-page-block-contents figure').each(($figure) => {
-            // Valida que as imagem do evento existam
-            cy.wrap($figure).find('img')
-              .should('have.attr', 'src')
-              .and('include', 'upload.wikimedia.org');
+          // Valida que as imagem do evento existam
+          cy.wrap($figure).find('img')
+            .should('have.attr', 'src')
+            .and('include', 'upload.wikimedia.org');
         });
         cy.get('.ea-links a').contains('Mais eventos atuais')
           // Valida a existencia do link para Mais eventos atuais
@@ -381,7 +381,7 @@ describe('Wikipedia - Página Principal', () => {
 
     it('CT014 - Validação da Seção Imagem do dia', () => {
 
-      cy.get('.main-page.main-page-third-row').within(()=> {
+      cy.get('.main-page.main-page-third-row').within(() => {
         // Verifica se o título da seção está presente
         cy.get('.main-page-block-heading').contains('Imagem do dia');
         // Verifica se a seção de conteúdo da imagem existe
@@ -458,7 +458,7 @@ describe('Wikipedia - Página Principal', () => {
           { href: '/wiki/Wikip%C3%A9dia:Lista_de_predefini%C3%A7%C3%B5es', text: 'Predefinição' },
           { href: '/wiki/Ajuda:P%C3%A1gina_principal', text: 'Ajuda' },
         ];
-    
+
         links.forEach(link => {
           // Seleciona e valida os links com base no href e texto
           cy.get(`a[href="${link.href}"]`)
@@ -476,7 +476,7 @@ describe('Wikipedia - Página Principal', () => {
         // Verifica se o link da Wikimedia está presente
         cy.get('a[title="Wikimedia"]')
           .should('have.attr', 'href', '/wiki/Wikimedia');
-        
+
         const links = [
           { href: "https://commons.wikimedia.org/wiki/P%C3%A1gina_principal", title: "Commons" },
           { href: "https://incubator.wikimedia.org/wiki/Incubator:Main_Page/pt", title: "Incubator" },
@@ -493,7 +493,7 @@ describe('Wikipedia - Página Principal', () => {
           { href: "https://www.wikifunctions.org/wiki/", title: "Wikifunctions" },
           { href: "https://phabricator.wikimedia.org/", title: "Phabricator" }
         ];
-        
+
         links.forEach(({ href, title }) => {
           cy.get('span')
             .contains(title)  // Validar o texto do link
@@ -508,41 +508,41 @@ describe('Wikipedia - Página Principal', () => {
     it('CT017 - Deve exibir o footer corretamente', () => {
       cy.get('#footer').should('be.visible'); // Verifica se o footer está visível
     });
-  
+
     it('CT018 - Deve conter o texto de última modificação', () => {
       cy.get('#footer-info-lastmod')
         .should('be.visible')
         .and('contain', 'Esta página foi editada pela última vez');
     });
-  
+
     it('CT019 - Deve conter o link da Creative Commons com o texto correto', () => {
       cy.get('#footer-info-copyright')
         .find('a')
         .should('have.attr', 'href')
         .and('include', 'creativecommons.org');
     });
-  
+
     it('CT020 - Deve conter o link para a Política de Privacidade', () => {
       cy.get('#footer-places-privacy')
         .find('a')
         .should('have.attr', 'href')
         .and('include', 'foundation.wikimedia.org');
     });
-  
+
     it('CT021 - Deve redirecionar para a página de desenvolvedores', () => {
       cy.get('#footer-places-developers')
         .find('a')
         .should('have.attr', 'href')
         .and('eq', 'https://developer.wikimedia.org');
     });
-  
+
     it('CT022 - Deve exibir o link para a versão móvel', () => {
       cy.get('#footer-places-mobileview')
         .find('a')
         .should('have.attr', 'href')
         .and('include', 'm.wikipedia.org')
     });
-  
+
     it('CT023 - Deve ter o logo da Wikimedia Foundation com link correto', () => {
       cy.get('#footer-copyrightico')
         .find('a')
@@ -553,7 +553,7 @@ describe('Wikipedia - Página Principal', () => {
         .should('have.attr', 'alt')
         .and('eq', 'Wikimedia Foundation');
     });
-  
+
     it('CT024 - Deve exibir o logo "Powered by MediaWiki" com link correto', () => {
       cy.get('#footer-poweredbyico')
         .find('a')
@@ -564,7 +564,7 @@ describe('Wikipedia - Página Principal', () => {
         .should('have.attr', 'alt')
         .and('eq', 'Powered by MediaWiki');
     });
-  
+
     it('CT025 - Deve conter links internos válidos', () => {
       // Verifica se os links internos estão funcionando, sem quebrar
       cy.get('#footer-places-about')
@@ -576,11 +576,11 @@ describe('Wikipedia - Página Principal', () => {
         .should('have.attr', 'href')
         .and('include', '/wiki/Wikip%C3%A9dia:Aviso_geral');
     });
-  
+
     it('CT026 - O item "Editar configurações da antevisão" deve estar oculto', () => {
       cy.get('li[style="display: none;"]')
         .should('not.be.visible'); // Verifica que o item não está visível
     });
-    
+
   });
 });
