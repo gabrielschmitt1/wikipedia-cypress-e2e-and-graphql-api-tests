@@ -1,4 +1,5 @@
 const { defineConfig } = require("cypress");
+const { addMatchImageSnapshotPlugin } = require("@simonsmith/cypress-image-snapshot/plugin");
 
 module.exports = defineConfig({
   retries: {
@@ -16,6 +17,7 @@ module.exports = defineConfig({
     },
     setupNodeEvents(on, config) {
       require('@cypress/grep/src/plugin')(config);
+      addMatchImageSnapshotPlugin(on, config);
       return config;
     },
   },
