@@ -10,6 +10,10 @@ module.exports = defineConfig({
     viewportHeight: 800,
     defaultCommandTimeout: 10000,
     baseUrl: "https://pt.wikipedia.org",
+    env: {
+      hideXhr: true,
+      apiUrl: "https://graphqlzero.almansi.me/api",
+    },
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
