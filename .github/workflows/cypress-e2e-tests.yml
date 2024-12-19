@@ -10,8 +10,6 @@ jobs:
   e2e-regression-tests:
     name: Run E2E Regression Tests
     runs-on: ubuntu-latest
-    # Condição para executar apenas na branch release
-    if: github.ref == 'refs/heads/release'
 
     steps:
       - name: Checkout Code
