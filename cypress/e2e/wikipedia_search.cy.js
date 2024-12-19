@@ -127,7 +127,7 @@ describe('Wikipedia - Testes de Pesquisa', () => {
   
     // Cenários de Pesquisa Avançados
     context('Pesquisas Avançadas', () => {
-      it('CT003 - Deve realizar pesquisa com caracteres especiais', () => {
+      it('CT009 - Deve realizar pesquisa com caracteres especiais', () => {
         const termosPesquisa = [
           'São Paulo',
           '!',
@@ -153,7 +153,7 @@ describe('Wikipedia - Testes de Pesquisa', () => {
         })
       })
   
-      it('CT004 - Deve testar pesquisas sem resultados', () => {
+      it('CT010 - Deve testar pesquisas sem resultados', () => {
         const termoSemResultado = 'asdfghjklcpoiuytrewq'
         cy.intercept('GET', `https://pt.wikipedia.org/w/rest.php/v1/search/title?q=${termoSemResultado}&limit=10`).as('noResults')
         cy.get('#searchInput')
@@ -169,7 +169,7 @@ describe('Wikipedia - Testes de Pesquisa', () => {
   
     // Cenários de Navegação e Interação
     context('Navegação e Interação', () => {
-      it('CT005 - Deve navegar entre resultados de pesquisa', () => {
+      it('CT011 - Deve navegar entre resultados de pesquisa', () => {
         cy.get('input[name="search"][aria-label="Pesquisar na Wikipédia"]')
           .type('Argentina')
         cy.get('input[name="search"][aria-label="Pesquisar na Wikipédia"]')
@@ -184,7 +184,7 @@ describe('Wikipedia - Testes de Pesquisa', () => {
         cy.get('#firstHeading').should('be.visible')
       })
   
-      it('CT006 - Deve testar sugestões de pesquisa', () => {
+      it('CT012 - Deve testar sugestões de pesquisa', () => {
         cy.get('input[name="search"][aria-label="Pesquisar na Wikipédia"]')
           .type('Argen')
         
@@ -210,7 +210,7 @@ describe('Wikipedia - Testes de Pesquisa', () => {
   
     // Cenários de Desempenho e Acessibilidade
     context('Desempenho e Acessibilidade', () => {
-      it('CT007 - Deve verificar tempo de carregamento da página', () => {
+      it('CT013 - Deve verificar tempo de carregamento da página', () => {
         cy.get('#searchInput').as('timingSearch')
         cy.get('@timingSearch').type('Computação')
         cy.contains('button', 'Pesquisar').click()
@@ -223,7 +223,7 @@ describe('Wikipedia - Testes de Pesquisa', () => {
         })
       })
   
-      it('CT008 - Deve verificar acessibilidade básica', () => {
+      it('CT014 - Deve verificar acessibilidade básica', () => {
         // Verificações simples de acessibilidade
         cy.get('#searchInput')
           .should('have.attr', 'aria-label')
