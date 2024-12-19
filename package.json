@@ -11,6 +11,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^13.17.0"
+    "cypress": "^13.17.0",
+    "cypress-plugin-xhr-toggle": "^1.2.1",
+    "eslint": "^9.17.0",
+    "eslint-plugin-cypress": "^4.1.0"
   }
 }
