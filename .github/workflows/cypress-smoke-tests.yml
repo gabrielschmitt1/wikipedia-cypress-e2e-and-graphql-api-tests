@@ -1,0 +1,27 @@
+name: Cypress Smoke Tests
+
+on:
+  workflow_dispatch: # Permite execução manual
+  
+jobs:
+  
+  e2e-smoke-tests:
+    name: Run E2E smoke Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+
+      - name: Install Dependencies
+        run: |
+          npm install
+
+      - name: Run Cypress E2E Smoke Tests
+        run: |
+          npm run cy:run:e2e:smoke

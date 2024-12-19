@@ -29,26 +29,3 @@ jobs:
       - name: Run Cypress E2E Regression Tests
         run: |
           npm run cy:run:e2e
-
-  e2e-smoke-tests:
-    name: Run E2E smoke Tests
-    runs-on: ubuntu-latest
-    # Executa apenas quando disparado manualmente
-    if: github.event_name == 'workflow_dispatch'
-    
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 22
-
-      - name: Install Dependencies
-        run: |
-          npm install
-
-      - name: Run Cypress E2E Smoke Tests
-        run: |
-          npm run cy:run:e2e:smoke

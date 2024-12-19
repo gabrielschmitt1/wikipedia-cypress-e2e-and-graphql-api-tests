@@ -14,6 +14,7 @@ wikipedia-cypress-e2e-and-graphqlzero-api-tests
 |-- .github/workflows/          # Arquivos para configuração de pipelines CI/CD
 |   |-- cypress-api-tests.yml   # Pipeline para testes GraphQL
 |   |-- cypress-e2e-tests.yml   # Pipeline para testes E2E
+|   |-- cypress-smoke-tests.yml # Pipeline para Smoke testes
 |
 |-- cypress/
 |   |-- e2e/                    
@@ -125,11 +126,11 @@ npm run cy:open
 O projeto possui pipelines configurados no GitHub Actions para executar os testes.
 
 - **Arquivo:** `.github/workflows/cypress-e2e-tests.yml`
-  - Separado em dois jobs "e2e-regression-tests" e "e2e-smoke-tests"
   - Definido workflow_dispatch para permitir executar manualmente os testes
-  - o Job "e2e-smoke-tests" executa manualmente.
-  - o Job "e2e-regression-tests" executa automaticamente ao subir um push para uma branch de release
+  - Executa automaticamente apenas ao subir um push para uma branch de release
 
+- **Arquivo:** `.github/workflows/cypress-smoke-tests.yml`
+  - Definido workflow_dispatch para permitir executar manualmente os testes
 
 - **Arquivo:** `.github/workflows/cypress-api-tests.yml`
   - Executa os testes GraphQL do GraphQLZero.
