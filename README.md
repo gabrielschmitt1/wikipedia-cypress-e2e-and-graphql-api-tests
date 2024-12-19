@@ -29,6 +29,10 @@ wikipedia-cypress-e2e-and-graphqlzero-api-tests
 |   |-- fixtures/               # Dados fixos para uso nos testes
 |   |   |-- post-mutation.json
 |   |
+|   |-- screenshots/               # Capturas de tela dos testes
+|   |
+|   |-- snapshots/                 # Arquivos de imagem a ser comparada
+|   |
 |   |-- support/                
 |       |-- commands.js         # Comandos customizados do Cypress
 |       |-- e2e.js              # Configurações globais dos testes
