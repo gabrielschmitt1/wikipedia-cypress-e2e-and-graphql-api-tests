@@ -20,7 +20,7 @@ describe('Wikipedia - Testes de Pesquisa', () => {
       cy.get('#firstHeading').should('contain', 'Gabriel')
     })
 
-    it('CT002 - Deve buscar por país (Brasil) com sucesso', () => {
+    it('CT002 - Deve buscar por país (Brasil) com sucesso', { tags: ['smoke'] }, () => {
       // Intercepta a API de busca
       cy.intercept('GET', '**/rest.php/v1/search/title**').as('request')
       cy.get('#searchInput').as('buscaBrasil')
@@ -33,7 +33,7 @@ describe('Wikipedia - Testes de Pesquisa', () => {
       cy.get('#firstHeading').should('contain', 'Brasil')
     });
 
-    it('CT003 - Deve validar o conteudo dos menus ao pesquisar por (Brasil)', () => {
+    it('CT003 - Deve validar o conteudo dos menus ao pesquisar por (Brasil)', { tags: ['smoke'] }, () => {
       cy.visit('/wiki/Brasil')
       // Lista de IDs e textos esperados
       const menuItems = [
@@ -169,7 +169,7 @@ describe('Wikipedia - Testes de Pesquisa', () => {
 
   // Cenários de Navegação e Interação
   context('Navegação e Interação', () => {
-    it('CT011 - Deve navegar entre resultados de pesquisa', () => {
+    it('CT011 - Deve navegar entre resultados de pesquisa', { tags: ['smoke'] }, () => {
       cy.get('input[name="search"][aria-label="Pesquisar na Wikipédia"]')
         .type('Argentina')
       cy.get('input[name="search"][aria-label="Pesquisar na Wikipédia"]')
@@ -210,7 +210,7 @@ describe('Wikipedia - Testes de Pesquisa', () => {
 
   // Cenários de Desempenho e Acessibilidade
   context('Desempenho e Acessibilidade', () => {
-    it('CT013 - Deve verificar tempo de carregamento da página', () => {
+    it('CT013 - Deve verificar tempo de carregamento da página', { tags: ['smoke'] }, () => {
       cy.get('#searchInput').as('timingSearch')
       cy.get('@timingSearch').type('Computação')
       cy.contains('button', 'Pesquisar').click()
@@ -223,7 +223,7 @@ describe('Wikipedia - Testes de Pesquisa', () => {
       })
     })
 
-    it('CT014 - Deve verificar acessibilidade básica', () => {
+    it('CT014 - Deve verificar acessibilidade básica', { tags: ['smoke'] }, () => {
       // Verificações simples de acessibilidade
       cy.get('#searchInput')
         .should('have.attr', 'aria-label')

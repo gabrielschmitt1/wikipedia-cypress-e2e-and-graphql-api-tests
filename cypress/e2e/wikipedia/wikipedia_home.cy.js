@@ -148,7 +148,7 @@ describe('Wikipedia - Página Principal', () => {
     });
   });
 
-  context('Validação do menu principal de navegação lateral', () => {
+  context('Validação do menu principal de navegação lateral', { tags: ['menu', 'smoke'] }, () => {
 
     beforeEach(() => {
       cy.get('#vector-main-menu-dropdown-checkbox')

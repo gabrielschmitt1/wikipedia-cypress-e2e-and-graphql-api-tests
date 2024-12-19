@@ -1,5 +1,5 @@
 describe('GraphQLZero API Tests', () => {
-  it('CT001 - Deve buscar usuario especifico com sucesso', () => {
+  it('CT001 - Deve buscar usuario especifico com sucesso', { tags: ['api', 'smoke'] }, () => {
     const query = `
           query {
             user(id: 1) {
@@ -32,7 +32,7 @@ describe('GraphQLZero API Tests', () => {
       expect(user.address.geo).to.have.property('lng');
     });
   });
-  it('CT002 - Deve buscar usuários com sucesso', () => {
+  it('CT002 - Deve buscar usuários com sucesso', { tags: ['api', 'smoke'] }, () => {
     const query = `
             query {
               users(options: { paginate: { page: 1, limit: 2 } }) {
@@ -67,7 +67,7 @@ describe('GraphQLZero API Tests', () => {
     });
   });
 
-  it('CT003 - Deve criar um post com sucesso', () => {
+  it('CT003 - Deve criar um post com sucesso', { tags: ['api', 'smoke'] }, () => {
     // Carregar as variáveis do arquivo de fixture
     const query = `
               mutation ($input: CreatePostInput!) {
@@ -96,7 +96,7 @@ describe('GraphQLZero API Tests', () => {
     });
   });
 
-  it('CT004 - Deve buscar um post com sucesso', () => {
+  it('CT004 - Deve buscar um post com sucesso', { tags: ['api', 'smoke'] }, () => {
     const query = `
         query {
           post(id: 1) {
@@ -122,7 +122,7 @@ describe('GraphQLZero API Tests', () => {
     });
   });
 
-  it('CT005 - Deve deletar um post com sucesso', () => {
+  it('CT005 - Deve deletar um post com sucesso', { tags: ['api', 'smoke'] }, () => {
     const postId = "1"; // ID do post que será deletado
     const variables = { id: postId }
     const query = `
