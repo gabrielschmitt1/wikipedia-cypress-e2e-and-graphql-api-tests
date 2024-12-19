@@ -1,4 +1,4 @@
-name: Cypress Tests
+name: Cypress E2E Tests
 
 on:
   workflow_dispatch: # Define que o workflow será executado manualmente
