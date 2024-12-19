@@ -70,7 +70,7 @@ Os testes GraphQL são feitos para validar a API do GraphQLZero.
 
 1. Clone o repositório:
    ```bash
-   git clone <URL_DO_REPOSITORIO>
+   git clone https://github.com/gabrielschmitt1/wikipedia-cypress-e2e-and-graphql-api-tests.git
    ```
 
 2. Navegue até o diretório do projeto:
@@ -133,6 +133,18 @@ O projeto possui pipelines configurados no GitHub Actions para executar os teste
 
 - **Arquivo:** `.github/workflows/cypress-api-tests.yml`
   - Executa os testes GraphQL do GraphQLZero.
+
+### Plugins e bibliotecas utilizadas
+
+  - @cypress/grep - Para separar e executar os testes através de tags
+  - cypress-plugin-xhr-toggle - Para manter requisições xhr não visiveis durante os testes
+  - eslint-plugin-cypress - Plugin para manter o padrão de melhores praticas de uso do Cypress.
+
+### Comentários e Possíveis melhorias
+
+  - Foi decidido utilizar a estrutura padrão do Cypress para organizar os testes.
+  - Poderia ser implementado um sistema de notificação por (email/slack) com relatorio dos testes e detalhes de testes falhando.
+  - Criar uma verificação de Lint automatica, para manter o padrão de indentação do projeto. 
 
 ## Licença
 

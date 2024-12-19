@@ -10,9 +10,11 @@
     "cy:run:e2e:smoke": "cypress run --spec 'cypress/e2e/wikipedia' --env grepTags=smoke --browser chrome",
     "cy:run:api": "cypress run --spec 'cypress/e2e/graphqlzero' --browser chrome"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "Cypress"
+  ],
+  "author": "Gabriel Ribeiro Schmitt",
+  "license": "MIT",
   "devDependencies": {
     "@cypress/grep": "^4.1.0",
     "cypress": "^13.17.0",
