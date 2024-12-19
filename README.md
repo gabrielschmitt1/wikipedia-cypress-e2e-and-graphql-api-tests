@@ -20,12 +20,18 @@ wikipedia-cypress-e2e-and-graphqlzero-api-tests
 |   |-- e2e/                    
 |   |   |-- graphqlzero/        # Testes para a API GraphQL
 |   |   |   |-- graphqlzero.cy.js
+|   |   |-- visual_testing/     # Testes de regressão visual
+|   |   |   |-- wikipedia.cy.js
 |   |   |-- wikipedia/          # Testes para o site Wikipedia
 |   |       |-- wikipedia_home.cy.js
 |   |       |-- wikipedia_search.cy.js
 |   |
 |   |-- fixtures/               # Dados fixos para uso nos testes
 |   |   |-- post-mutation.json
+|   |
+|   |-- screenshots/               # Capturas de tela dos testes
+|   |
+|   |-- snapshots/                 # Arquivos de imagem a ser comparada
 |   |
 |   |-- support/                
 |       |-- commands.js         # Comandos customizados do Cypress
@@ -51,6 +57,13 @@ Os testes E2E verificam funcionalidades principais do site Wikipedia para garant
 
 - **Arquivo:** `wikipedia_search.cy.js`
   - Testa o recurso de busca do Wikipedia, incluindo validação de resultados.
+
+### Testes de Regressão Visual no Wikipedia
+
+Os testes de regressão visual verifica se não houve alterações na visualização da pagina.
+
+- **Arquivo:** `wikipedia.cy.js`
+  - Testa o conteudo da pagina ajuda da wikipedia.
 
 ### Testes GraphQL no GraphQLZero
 
@@ -140,12 +153,14 @@ O projeto possui pipelines configurados no GitHub Actions para executar os teste
   - @cypress/grep - Para separar e executar os testes através de tags
   - cypress-plugin-xhr-toggle - Para manter requisições xhr não visiveis durante os testes
   - eslint-plugin-cypress - Plugin para manter o padrão de melhores praticas de uso do Cypress.
+  - @simonsmith/cypress-image-snapshot - Plugin para testes de regressão visual no cypress.
 
 ### Comentários e Possíveis melhorias
 
   - Foi decidido utilizar a estrutura padrão do Cypress para organizar os testes.
   - Poderia ser implementado um sistema de notificação por (email/slack) com relatorio dos testes e detalhes de testes falhando.
   - Criar uma verificação de Lint automatica, para manter o padrão de indentação do projeto. 
+  - Aumentar a cobertura de testes visuais.
 
 ## Licença
 
