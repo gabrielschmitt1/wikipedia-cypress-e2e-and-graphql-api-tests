@@ -1,48 +1,52 @@
 name: Cypress E2E Tests
 
 on:
-  workflow_dispatch: # Define que o workflow será executado manualmente
+  workflow_dispatch: # Permite execução manual
+  push: # Executa automaticamente em push
+    branches:
+      - release # Gatilho para mudanças na branch release
 
 jobs:
-  
   e2e-regression-tests:
     name: Run E2E Regression Tests
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code # Faz o checkout do código do seu repositório
+      - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Setup Node.js # Configura o node para a versão especificada
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 22
 
-      - name: Install Dependencies # Instala as dependências do projeto
+      - name: Install Dependencies
         run: |
           npm install
 
-      - name: Run Cypress E2E Regression Tests # Executa os testes E2E
+      - name: Run Cypress E2E Regression Tests
         run: |
           npm run cy:run:e2e
 
   e2e-smoke-tests:
-    name: Run E2E Smoke Tests
+    name: Run E2E smoke Tests
     runs-on: ubuntu-latest
-
+    # Condição para executar apenas na branch release
+    if: github.ref == 'refs/heads/release'  
+    
     steps:
-      - name: Checkout Code # Faz o checkout do código do seu repositório
+      - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Setup Node.js # Configura o node para a versão especificada
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 22
 
-      - name: Install Dependencies # Instala as dependências do projeto
+      - name: Install Dependencies
         run: |
           npm install
 
-      - name: Run Cypress E2E Smoke Tests # Executa os testes E2E
+      - name: Run Cypress E2E Smoke Tests
         run: |
           npm run cy:run:e2e:smoke
