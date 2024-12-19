@@ -4,9 +4,8 @@ on:
   workflow_dispatch: # Define que o workflow será executado manualmente
 
 jobs:
-  
-  e2e-tests:
-    name: Run E2E Tests
+  api-tests:
+    name: Run API Tests
     runs-on: ubuntu-latest
 
     steps:
@@ -22,6 +21,6 @@ jobs:
         run: |
           npm install
 
-      - name: Run Cypress E2E Tests # Executa os testes E2E
+      - name: Run Cypress API Tests # Executa os testes de API
         run: |
-          npm run cy:run:e2e
+          npm run cy:run:api
