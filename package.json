@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "cy:open": "cypress open",
+    "cy:run:all": "cypress run",
     "cy:run:e2e": "cypress run --spec 'cypress/e2e/wikipedia' --browser chrome",
     "cy:run:e2e:smoke": "cypress run --spec 'cypress/e2e/wikipedia' --env grepTags=smoke --browser chrome",
     "cy:run:api": "cypress run --spec 'cypress/e2e/graphqlzero' --browser chrome"
